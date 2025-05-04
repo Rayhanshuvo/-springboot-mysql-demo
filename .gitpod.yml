@@ -1,0 +1,17 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: |
+      sudo apt-get update
+      sudo apt-get install -y mysql-server
+      sudo service mysql start
+      mysql -u root -e "CREATE DATABASE mydatabase;"
+      ./mvnw spring-boot:run
+    openIn: bottom
+
+ports:
+  - port: 8080
+    onOpen: open-browser
+  - port: 3306
+    onOpen: ignore
